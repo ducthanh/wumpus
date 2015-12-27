@@ -3,9 +3,9 @@ describe "A cave" do
 	let(:rooms) { (1..20).map { |i| cave.room(i) } }
 
 	it "has 20 rooms that each connect to exactly three other rooms" do
+		
 		rooms.each do |room|
 			rooms.neighbors.count.must_equal(3)
-
 			assert room.neighbors.all? { |e| e.neighbors.include?(room) }
 		end
 	end
@@ -22,9 +22,7 @@ describe "A cave" do
 	it "can move hazards from one room to another" do
 		room = cave.random_room
 		neighbor = room.neighbors.first
-
 		room.add(:bats)
-
 		assert room.has?(:bats)
 		refute neighbor.has?(:bats)
 		cave.move(:bats, :from => room, :to => neighbor)
@@ -34,7 +32,6 @@ describe "A cave" do
 
 	it "can add hazards at random to a specific number of rooms" do
 		cave.add_hazard(:bats, 3)
-
 		room.select{ |e| e.has?(:bats) }.count.must_equal(3)
 	end
 
@@ -47,9 +44,7 @@ describe "A cave" do
 		cave.add_hazard(:wumpus, 1)
 		cave.add_hazard(:pit, 3)
 		cave.add_hazard(:bats, 3)
-
 		entrance = cave.entrance
-
 		assert entrance.safe?
 	end
 end
