@@ -9,7 +9,7 @@ module Wumpus
 		attr_reader :room
 
 		def sense(thing, &callback)
-			@sense[thing] = callback
+			@senses[thing] = callback
 		end
 
 		def encounter(thing, &callback)
