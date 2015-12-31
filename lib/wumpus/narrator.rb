@@ -11,9 +11,8 @@ module Wumpus
 
 		def tell_story
 			yield until finished?
-				say "----------------"
-				describe_ending
-			end
+			say "----------------"
+			describe_ending
 		end
 
 		def finish_story(message)
