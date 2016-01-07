@@ -1,2 +1,2 @@
 # wumpus
- ©practicingruby.com 
+ © practicingruby.com 
