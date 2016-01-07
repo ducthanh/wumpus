@@ -13,4 +13,19 @@ class Minitest::Unit::TestCase
 		stdin = $stdin
 		$stdin, write = IO.pipe
 		capture_io { yield(write) }
+	ensure
+		write.close
+		$stdin = stdin
 	end
+
+	def expect_string_sequence(out, *patterns)
+		scanner = StringScanner.new(out)
+
+		patterns.each do |pattern|
+			scanner.scan_until(pattern) or
+			flunk("Didn't find pattern #{pattern.inspect} in sequence")
+		end
+		
+		pass
+	end
+end
